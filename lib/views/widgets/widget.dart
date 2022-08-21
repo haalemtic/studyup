@@ -342,6 +342,7 @@ class _BookAudioBannerState extends State<BookAudioBanner> {
   void initState() {
     super.initState();
     getFreeBooks();
+    initializeTts();
     extracText();
   }
 
@@ -405,10 +406,6 @@ class _BookAudioBannerState extends State<BookAudioBanner> {
     await _flutterr_tts.pause();
   }
 
-  void continued() async {
-    await _flutterr_tts.speak(_text);
-  }
-
   String removeAllHtmlTags(String htmlText) {
     RegExp exp = RegExp(
       r"/\r?\n|\r/g",
@@ -431,7 +428,7 @@ class _BookAudioBannerState extends State<BookAudioBanner> {
 
   @override
   Widget build(BuildContext context) {
-    return freeBooks.length == 0
+    return _text == ""
         ? Shimmer.fromColors(
             baseColor: Color.fromARGB(255, 226, 224, 224),
             highlightColor: Color.fromARGB(255, 250, 250, 250),
@@ -616,7 +613,7 @@ class _BookAudioBannerState extends State<BookAudioBanner> {
                                       if (isReading == false) {
                                         stop();
                                       } else {
-                                        continued();
+                                        speak(_text);
                                       }
                                     });
                                   },

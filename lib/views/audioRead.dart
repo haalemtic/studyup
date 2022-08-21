@@ -39,7 +39,7 @@ class _AudioReadState extends State<AudioRead>
   String _text = "";
   PDFDoc? _pdfDoc;
   bool _isOk = false;
-
+  var end = "";
   final _flutterr_tts = FlutterTts();
   void initializeTts() {
     _flutterr_tts.setStartHandler(() {
@@ -95,7 +95,7 @@ class _AudioReadState extends State<AudioRead>
   }
 
   void continued() async {
-    await _flutterr_tts.speak(_text);
+    speak(_text);
   }
 
   String removeAllHtmlTags(String htmlText) {
@@ -118,31 +118,6 @@ class _AudioReadState extends State<AudioRead>
     });
 
     speak(_text);
-  }
-
-  void _showResult(String text) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Extracted text'),
-            content: Scrollbar(
-              child: SingleChildScrollView(
-                child: Text(text),
-                physics: BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-              ),
-            ),
-            actions: [
-              FlatButton(
-                child: Text('Close'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-          );
-        });
   }
 
   @override

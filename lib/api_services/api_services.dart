@@ -226,9 +226,10 @@ Future<List<dynamic>> getBookRecentlyAdded(var auth_token) async {
   final jsonKey = 'json_key_books';
   final prefs = await SharedPreferences.getInstance();
   final connectivityResult = await (Connectivity().checkConnectivity());
+  final internet = await internetCheck();
 
   try {
-    if (connectivityResult == ConnectivityResult.none) {
+    if (connectivityResult == ConnectivityResult.none || internet != 200) {
       final jsonCache = jsonDecode(prefs.getString(jsonKey)!);
 
       var bookListCache = await jsonCache
@@ -280,8 +281,10 @@ Future<List<dynamic>> getCategories(var auth_token) async {
   final prefs = await SharedPreferences.getInstance();
   final connectivityResult = await (Connectivity().checkConnectivity());
 
+  final internet = await internetCheck();
+
   try {
-    if (connectivityResult == ConnectivityResult.none) {
+    if (connectivityResult == ConnectivityResult.none || internet != 200) {
       final jsonCache = jsonDecode(prefs.getString(jsonKey)!);
 
       var catListCache = await jsonCache
@@ -330,9 +333,10 @@ Future<List<dynamic>> getFavorisBook(var auth_token) async {
   final jsonKey = 'json_key_library_books';
   final prefs = await SharedPreferences.getInstance();
   final connectivityResult = await (Connectivity().checkConnectivity());
+  final internet = await internetCheck();
 
   try {
-    if (connectivityResult == ConnectivityResult.none) {
+    if (connectivityResult == ConnectivityResult.none || internet != 200) {
       final jsonCache = jsonDecode(prefs.getString(jsonKey)!);
 
       var bookListCache = await jsonCache

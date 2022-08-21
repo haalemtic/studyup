@@ -840,10 +840,7 @@ class _SettingsModalState extends State<SettingsModal> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => WebViewExample(
-                      link: "https://bookstudy.smt-group.net/a_propos",
-                      title: "À propos de StudyUp")),
+              MaterialPageRoute(builder: (context) => Appropos()),
             );
           },
           child: Container(
@@ -875,10 +872,7 @@ class _SettingsModalState extends State<SettingsModal> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => WebViewExample(
-                      link: "https://bookstudy.smt-group.net/terms",
-                      title: "Conditions d'utilisation")),
+              MaterialPageRoute(builder: (context) => Politics()),
             );
           },
           child: Container(
